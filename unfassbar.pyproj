@@ -22,20 +22,26 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="main\boot.py">
+    <Compile Include="boot.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="main\config.py">
+    <Compile Include="config.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="main\main.py" />
-    <Compile Include="main\ota_updater.py">
+    <Compile Include="main.py" />
+    <Compile Include="main\loop.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="main\webrepl_cfg.py">
+    <Compile Include="ota_updater.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="webrepl_cfg.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="main\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="__init__.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

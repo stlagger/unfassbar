@@ -2,6 +2,7 @@ import esp32
 import time
 from ota_updater import OTAUpdater
 import config
+from main.loop import Loop
 
 def download_and_install_update_if_available():
     o = OTAUpdater('https://github.com/stlagger/unfassbar')
@@ -14,8 +15,7 @@ def boot():
     
 def start():
     print("start")
+    Loop.run()
     
 
-
-print("RUN")
 boot()
