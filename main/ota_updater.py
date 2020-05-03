@@ -1,4 +1,3 @@
-
 # 1000 x dank aan Evelien die mijn in deze tijden gesteund heeft
 # ohja, en er is ook nog tante suker (Jana Dej.) die graag kinderen wilt maar het zelf nog niet beseft
 
@@ -38,14 +37,14 @@ class OTAUpdater:
         if latest_version > current_version:
             print('New version available, will download and install on next reboot')
             os.mkdir(self.modulepath('next'))
-            with open(self.modulepath('next/.version_on_reboot'), 'w') as versionfile:
+            with open(self.modulepath('next/version_on_reboot.py'), 'w') as versionfile:
                 versionfile.write(latest_version)
                 versionfile.close()
 
     def download_and_install_update_if_available(self, ssid, password):
         if 'next' in os.listdir(self.module):
-            if '.version_on_reboot' in os.listdir(self.modulepath('next')):
-                latest_version = self.get_version(self.modulepath('next'), '.version_on_reboot')
+            if 'version_on_reboot.py' in os.listdir(self.modulepath('next')):
+                latest_version = self.get_version(self.modulepath('next'), 'version_on_reboot.py')
                 print('New update found: ', latest_version)
                 self._download_and_install_update(latest_version, ssid, password)
         else:
@@ -56,14 +55,14 @@ class OTAUpdater:
 
         self.download_all_files(self.github_repo + '/contents/' + self.main_dir, latest_version)
         self.rmtree(self.modulepath(self.main_dir))
-        os.rename(self.modulepath('next/.version_on_reboot'), self.modulepath('next/.version'))
+        os.rename(self.modulepath('next/version_on_reboot.py'), self.modulepath('next/version.py'))
         os.rename(self.modulepath('next'), self.modulepath(self.main_dir))
         print('Update installed (', latest_version, '), will reboot now')
         machine.reset()
 
     def apply_pending_updates_if_available(self):
         if 'next' in os.listdir(self.module):
-            if '.version' in os.listdir(self.modulepath('next')):
+            if 'version.py' in os.listdir(self.modulepath('next')):
                 pending_update_version = self.get_version(self.modulepath('next'))
                 print('Pending update found: ', pending_update_version)
                 self.rmtree(self.modulepath(self.main_dir))
@@ -86,7 +85,7 @@ class OTAUpdater:
             print('Updating...')
             os.mkdir(self.modulepath('next'))
             self.download_all_files(self.github_repo + '/contents/' + self.main_dir, latest_version)
-            with open(self.modulepath('next/.version'), 'w') as versionfile:
+            with open(self.modulepath('next/version.py'), 'w') as versionfile:
                 versionfile.write(latest_version)
                 versionfile.close()
 
@@ -103,7 +102,7 @@ class OTAUpdater:
                 os.remove(directory + '/' + entry[0])
         os.rmdir(directory)
 
-    def get_version(self, directory, version_file_name='.version'):
+    def get_version(self, directory, version_file_name='version.py'):
         if version_file_name in os.listdir(directory):
             f = open(directory + '/' + version_file_name)
             version = f.read()
@@ -274,4 +273,3 @@ class HttpClient:
 
     def delete(self, url, **kw):
         return self.request('DELETE', url, **kw)
-
