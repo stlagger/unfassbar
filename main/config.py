@@ -1,0 +1,2 @@
+PASS=""
+SSID="BoesesFunknetz24"

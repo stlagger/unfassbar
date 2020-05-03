@@ -4,7 +4,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>2c2634e9-53c4-4a21-98f1-2476e37933f3</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>main.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +22,25 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="main.py" />
+    <Folder Include="main\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="main\boot.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="main\config.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="main\main.py" />
+    <Compile Include="main\ota_updater.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="main\webrepl_cfg.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="main\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
